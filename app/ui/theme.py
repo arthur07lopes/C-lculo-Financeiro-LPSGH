@@ -51,3 +51,21 @@ def _bind_hover(button, normal, hover):
   button.Bind(wx.EVT_LEAVE_WINDOW, on_leave)
 
 def add_focus_border(control):
+  border = wx.Panel(control.GetParent())
+  border.SetBackgroundColour(colour(BORDER))
+  root = wx.Boxsizer(wx.VERTICAL)
+  root.Add(control, 1, wx.ALL, 1)
+  border.SetSizer(root)
+  control.Bind(wx.EVT_SET_FOCUS, lambda event: focus_on(border, event))
+  control.Bind(wx.EVT_KILL_FOCUS, lambda event: focus_off(border, event))
+  return border
+
+def focus_on(border, event):
+  border.SetBackgroundColour(colour(BLUE))
+  border.Refresh()
+  event.Skip()
+
+def focus_off(border, event):
+  border.SetBackgroundColour(colour(BORDER))
+  border.Refresh()
+  event.Skip()
