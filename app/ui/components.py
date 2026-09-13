@@ -23,7 +23,7 @@ class Header(wx.Panel):
     apply_font(title, 19, True)
     tittle.SetForegroundColour(colour(WHITE))
     tittle.SetBackgroundColour(colour(NAVY))
-    acessible(title, "Título do aplicativo LPSGH Finanças", "Título Principal")
+    accessible(title, "Título do aplicativo LPSGH Finanças", "Título Principal")
 
     subtitle = wx.StaticText(self, label="Planejamento mensal simples, elegante e acessível")
     apply_font(subtitle, 10)
