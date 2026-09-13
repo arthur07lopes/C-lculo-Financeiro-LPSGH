@@ -29,10 +29,14 @@ class Header(wx.Panel):
     apply_font(subtitle, 10)
     subtitle.SetForegroundColour(colour((222, 236, 246)))
     subtitle.SetBackgroundColour(colour(NAVY))
-    acessible(subtitle, "Descrição do aplicativo", "Descrição do aplicativo.")
+    accessible(subtitle, "Descrição do aplicativo", "Descrição do aplicativo.")
 
     text.Add(title, 0, wx.BOTTOM, 4)
     text.Add(subtitle, 0)
     root.Add(text, 1, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 18)
 
     badge = wx.StaticText(self, label="ACESSÍVEL", style=wx.ALIGN_CENTER)
+    apply = font(badge, 9, True)
+    badge.SetBackgroundColour(colour(WHITE))
+    badge.SetForegroundColour(colour(NAVY))
+    accessible
