@@ -39,4 +39,34 @@ class Header(wx.Panel):
     apply = font(badge, 9, True)
     badge.SetBackgroundColour(colour(WHITE))
     badge.SetForegroundColour(colour(NAVY))
-    accessible
+    accessible(badge, "Indicação de acessibilidade", "Aplicativo preparado para teclado, NVDA e DOSVOX.")
+    root.Add(badge, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 18)
+    self.SetSizer(root)
+
+    for control in (title, subtitle):
+      control.Bind(wx.EVT_ERASE_BACKGROUND, lambda event: None)
+
+  def on_paint(self, event):
+    width, height = self.GetSize()
+    if width <= 0 or height <= 0:
+      return
+    dc = wx.PaintDC(self)
+    gc = wx.GraphicsContext.Create(dc)
+    if gc is None:
+      dc.SetBackground(wx.Brush(colour(NAVY)))
+      dc.Clear
+      return
+    brush = gc.CreateLinearGradientBrush(
+      0, 0, width, height, colour(BLUE), colour(NAVY_2)
+    )
+    gc.SetBrush(brush)
+    gc.SetPen(wx.TRANSPARENT_PEN)
+    gc.DrawRectangle(0, 0, width, height)
+
+
+class SectionTitle(wx.Panel):
+  def __init__(self, parent, number, title, description):
+    super().__init__(parent)
+    self.SetBackgroundColour(colour(WHITE))
+    root = wx.BoxSizer(wx.HORIZONTAL)
+    
